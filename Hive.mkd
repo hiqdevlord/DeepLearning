@@ -1,0 +1,16 @@
+###Hive配置
+---
+[1](http://blog.csdn.net/gudaoqianfu/article/details/7319287)
+
+有了Hadoop的基础，其他就相对简单。
+但是hive装好启动之后还是会报错。
+WARNING: org.apache.hadoop.metrics.jvm.EventCounter is deprecated. Please use org.apache.hadoop.log.metrics.EventCounter in all the log4j.properties files.
+虽然不是什么大问题，但是也觉得很不爽。
+按照网上给出的方案我都试过了，但是还是不行。最后放弃解决，不影响使用就行了。
+
+在hive指令里打出 show table;
+注意一定要有分号。然后可以显示OK表明Hive安装成功了。
+
+但是有个小问题就是
+用Mysql来代替dery数据源的设置还没有做，留着以后再搞。
+
