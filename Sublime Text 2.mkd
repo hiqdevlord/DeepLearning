@@ -4,9 +4,11 @@ Sbulime Text是一个跨平台的文本编辑器。收费，但是可以无限�
 我使用的是Ubuntu12.04系统。
 安装过程详见
 *[1](http://www.technoreply.com/how-to-install-sublime-text-2-on-ubuntu-12-04-unity/)
+
 安装好，通常第二个就安装插件package control
 
 这个插件的官方网址是
+
 [2](http://wbond.net/sublime_packages/package_control)
 
 
@@ -20,9 +22,11 @@ Sbulime Text是一个跨平台的文本编辑器。收费，但是可以无限�
 但是不知到为什么我这里也反复出现几个问题，都是有关权限的。
 
 [3](http://ruby-china.org/topics/7144)
+
 RubyChina提到了一个权限的问题
 
 [4](http://stackoverflow.com/questions/12284166/cant-install-package-control-in-sublime-text-2)
+
 stackflow 也提到了一个解决方案。反正就是在跌跌撞撞中装好了Packages Control
 
 找到的几个比较好的网上教程
