@@ -31,9 +31,9 @@ stackflow 也提到了一个解决方案。反正就是在跌跌撞撞中装好�
 
 找到的几个比较好的网上教程
 
-[5](http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/)这个是基于Mac来写的。
+[5](http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/)
 
-安装好package control之后我装了一个allignment，用来对齐等号的。但是因为快捷键冲突失败了。
+这个是基于Mac来写的。安装好package control之后我装了一个allignment，用来对齐等号的。但是因为快捷键冲突失败了。
 
 下面就是把ST设置成为VIM格式
 
