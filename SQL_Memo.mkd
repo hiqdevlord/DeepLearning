@@ -1,0 +1,99 @@
+** SQL **
+
+	select * 
+	from meals m
+	where exitsts
+	(select * 
+	 from partof p join items USING (itemid)
+			join madewith USING (itemid)
+			join ingredients USING (ingredientid)
+		where foodgroup = "Milk")
+
+
+---
+	SELECT vendorid, companyname
+	from vendors v1
+		where NOT exists (select * from evndors v2 
+		where v2.referredby=v1.vendorid);
+
+---
+	SELECT food, companyname,val
+	FROM vendors v, 
+	(SELECT name, vendorid, nuitprice*inventory 
+	from ingredients i 
+	WHERE foodgroup IN ("Fruit","Vegetable")) AS d(food,vdrno,val)
+	WHERE v.vendorid=d.vdrno;
+
+---
+	Find all ingredients supplied by Veggies_R_Us but not used in a Chicken Salad
+
+	Select ingredientid
+	From ingredients i, vendors v
+	WHERE i.vendorid = v.vendoried AND companyname = "Veggies_R_Us"
+	Except 
+	Select ingredientid
+	From items it, madewith m
+	Where it.itemid=m.itemid and it.name="chicken salad";
+
+---
+Find all items and vendors such that all ingredients supplied by that vendor are in the item
+
+	SELECT name, companyname
+	FROMitems it, vendors v
+ 	WHERE NOT EXISTS(
+		Select ingredientid -- ingredients supplied by vendor
+		from ingredients i
+		where i.vendorid=v.vendorid
+		EXCEPT
+		select ingredientid -- used in that item
+		From madewith m
+		WHERE it.itemid=m.itemid);
+
+	
+	SELECT i.name companyname
+	FROM items i, vendors v
+	WHERE
+		(select count(distinct m.ingredientid)-- number of ingredients in the item
+		from madewith m
+		WHERE i.itemid = m.itemid)
+	= -- number of ingredients in item supplied by vendor
+		(select count(distinct m.ingredientid)
+		from madewith m, ingredients n
+		WHERE i.itemid=m.itemid AND m.ingredientid=n.ingredientid AND n.venforid=v.vendorid);
+
+The second method is more efficient
+
+---
+Find all vendors and items such that all ingredients in the item are from the same vedor
+
+	SELECT i.name, companyname
+	From items i, vendors v
+	Where NOT Exists(	
+		(select m.ingredientid -- ingredients used in item
+		From madewith m
+		WHERE i.itemid=m.itemid)
+	EXCEPT
+		(SELECT ingredientid-- iingredients supplied by vendors
+		FROM ingredients i
+		WHERE i.vendorid=v.vendorid));
+
+	SELECT name, companyname
+	FROM items i, vendors v
+	WHERE -- numberi of ingredients in item supplied by vendor
+		(SELECT count(distinct m.ingredientid)
+		From madewith m, ingredients ing
+		WHERE i.itemid=m.itemid AND m.ingredientid=ing.ingredientid AND ing.vendorid=v.vendorid)
+	=
+	(SELECT count(distinct ing.ingredientid)-- number of ingredientssupplied by vendor
+		FROM ingredients ing
+		WHERE ing.vendorid=v.vendorid);
+
+
+
+
+
+
+
+
+
+
