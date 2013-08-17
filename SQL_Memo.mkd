@@ -89,7 +89,17 @@ Find all vendors and items such that all ingredients in the item are from the sa
 		WHERE ing.vendorid=v.vendorid);
 
 
+---
+Creating New rows using insert into, 
 
+Add water to every meal
+
+	Insert into partof (mealid, quantitiy, itemid)
+	SELECT mealid, 1, (select itemid From items WHERE name="water")
+	FROM meals
+	WHERE mealid NOT IN 
+		(SELECT mealid FROM partof p, items m
+		WHERE p.itemid=m.itemid AND name="water")
 
 
 
