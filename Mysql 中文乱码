@@ -1,0 +1,38 @@
+之前在Excel导入到mysql的时候遇到很多次出现乱码的情况。
+在网上也找到了不少方法和解决方案
+这里集中贴到这里
+最好的方法来自这个[网址](http://dev.tot.name/db/html/20081223/20081223112752.htm)
+总结起来如下：
+
+1 备份数据库
+
+    mysqldump --default-character-set=latin1 --create-options=false --set-charset=false  -u root -p 数据库名称
+
+    >E:\back.sql
+
+2 创建新数据库
+
+    CREATE DATABASE 数据库名称 CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+3 导入数据
+
+    mysql -u root -p --default-character-set=gbk  数据库名称<E:\back.sql
+    
+
+我没有备份的这个过程，在建立数据库的时候稍微要注意一下。因为在Gui建立新数据库的时候默认的是GB2312格式，
+但是在命令行就只是默认为latin1
+
+最好在配置文件中稍微修改一下，这样以后也省得麻烦了。
+
+修改方法如下
+
+
+
+参考网页
+[1](http://www.ttlsa.com/html/79.html)
+[2] (http://blog.chinaunix.net/uid-25266990-id-3344584.html)
+[3](http://en.gentoo-wiki.com/wiki/Convert_latin1_to_UTF-8_in_MySQL)
+[4](http://bbs.csdn.net/topics/190115814)
+[5](http://blog.csdn.net/ACMAIN_CHM/article/details/4174186)
+[6](http://my.oschina.net/Xerxeschn/blog/74278)
+[7](http://www.2cto.com/database/201108/101151.html)
