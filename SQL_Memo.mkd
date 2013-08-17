@@ -101,6 +101,13 @@ Add water to every meal
 		(SELECT mealid FROM partof p, items m
 		WHERE p.itemid=m.itemid AND name="water")
 
+---
+	CREATE Table sales(storeid,manager,total) AS
+	SELECT s.storeid, manager,sum(price)
+	FROM orders o, sotres s
+	WHERE o.sotreid=s.toreid
+	Group By s.storeid;
+
 
 
 
